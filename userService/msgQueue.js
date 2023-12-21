@@ -12,7 +12,7 @@ class Provider {
       this.channel = await this.connection.createChannel();
 
       this.channel.assertQueue("test-queue");
-      this.channel.consume("test-queue", (data) => {
+      this.channel.consume("test-queue", (data) => {  // consuming message from test-queue
         console.log(`${Buffer.from(data.content)}`);
         this.channel.ack(data); // acknowledgment is required to remove the message from queue if not acknowleged then message will remain in queue.
       });
